@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup and Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h4>Header</h4>
+            <div class="action">
+                <a href="/index.html">Signup</a>
+                <a href="/profile.html">Profile</a>
+            </div>
+        </div>
+
+        <div class="signup-section">
+            <h1>Signup</h1>
+            <div class="name">
+                <input type="text" id="name" placeholder="Full Name" required autocomplete="off">
+            </div>
+            <div class="email-section">
+                <input type="email" id="email" placeholder="Email" required autocomplete="off">
+            </div>
+            <div class="pass-setion">
+                <input type="password" id="password" placeholder="Password" required autocomplete="off">
+            </div>
+            <div class="confirm-section">
+                <input type="password" id="Cnpassword" placeholder="Confirm Password" required autocomplete="off">
+            </div>
+            <div class="message-section">
+                <p class="error" id="error"></p>
+                <p class="success" id="success"></p>
+            </div>
+            <div class="btn-section">
+                <button onclick="signup()">Signup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateAccessToken() {
+            return [...Array(16)].map(() => Math.random().toString(36)[2]).join('');
+        }
+        function signup() {
+            let name = document.getElementById('name').value.trim()
+            let email = document.getElementById('email').value.trim()
+            let password = document.getElementById('password').value.trim()
+            let confirmPassword = document.getElementById('Cnpassword').value.trim()
+            let error = document.getElementById('error')
+            let success = document.getElementById('success')
+            console.log({name, email, password, confirmPassword})
+            if (name == '' || email == '' || password == '' || confirmPassword == '') {
+                error.textContent = 'Error: All the fields are mandatory!';
+                error.className = 'message-error';
+                return;
+            }
+            let user = {
+                name,
+                email, 
+                password, 
+                confirmPassword,
+                accessToken: generateAccessToken()
+            }
+            localStorage.setItem('user', JSON.stringify(user));
+            success.textContent = 'Signup successful! Redirecting...';
+            success.className = 'message-success';
+
+            setTimeout(() => {
+                window.location.href = '/profile.html';
+            }, 1000);
+        }
+        function checkAccess() {
+            let user  = localStorage.getItem('user')
+            let userDetails = JSON.parse(user)
+            let accessToken = userDetails?.accessToken
+            if(accessToken) {
+                window.location.href = '/profile.html'
+                return
+            }
+        }
+        window.onload = checkAccess
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+.container {
+    padding: 0 3%;
+}
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 20px;
+    background-color: #000;
+    border-bottom: 2px solid #fff;
+}
+.header h4 {
+    color: #fff;
+    font-weight: 500;
+    font-size: 22px;
+}
+.header a {
+    color: #fff;
+    font-size: 22px;
+    text-decoration: none;
+    margin-right: 35px;
+}
+.signup-section, .detail-section {
+    width: 65%;
+    margin: auto;
+    padding: 6% 0px;
+}
+.signup-section h1, .detail-section h1 {
+    font-size: 60px;
+    color: #fff;
+    font-weight: 100;
+    margin-bottom: 40px;
+}
+.signup-section input {
+    width: 100%;
+    padding: 15px 0px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    background: #000;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+}
+.signup-section input::placeholder {
+    color: #fff;
+}
+.signup-section input:focus-visible {
+    outline: none;
+}
+.btn-section button, .sign-out button {
+    padding: 12px 30px;
+    font-size: 21px;
+    width: 180px;
+    cursor: pointer;
+}
+.btn-section {
+    margin-top: 30px;
+}
+.message-error{
+    color: red;
+    font-size: 24px;
+}
+.message-success {
+    color: green;
+    font-size: 24px;
+}
+.detail-section h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #fff;
+}

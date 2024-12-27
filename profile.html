@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h4>Header</h4>
+            <div class="action">
+                <a href="/index.html">Signup</a>
+                <a href="/profile.html">Profile</a>
+            </div>
+        </div>
+        <div class="detail-section">
+            <h1>Profile</h1>
+            <div class="user-details">
+                <h2 class="user-name"></h2>
+                <h2 class="user-email"></h2>
+                <h2 class="user-password"></h2>
+            </div>
+            <div class="sign-out">
+                <button onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function signOut() {
+            localStorage.setItem('user', null)
+            window.location.href = '/index.html'
+        }
+        function getDeatils() {
+            let user  = localStorage.getItem('user')
+            let userDetails = JSON.parse(user)
+            let accessToken = userDetails?.accessToken
+            if(!accessToken) {
+                window.location.href = '/index.html';
+                return;
+            }
+            if(user) {
+                let userDetails = JSON.parse(user)
+                let name = document.querySelector('.user-name')
+                let email = document.querySelector('.user-email')
+                let password = document.querySelector('.user-password')
+                name.textContent = `Full Name: ${userDetails.name}`
+                email.textContent = `Email: ${userDetails.email}`
+                password.textContent = `Password: ${userDetails.password}`
+            }
+        }
+        window.onload = getDeatils
+    </script>
+</body>
+</html>
